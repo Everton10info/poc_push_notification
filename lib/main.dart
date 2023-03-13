@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:poc_push_notification/app.dart';
 import 'firebase_options.dart';
 
 @pragma('vm:entry-point')
@@ -10,7 +9,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
 
-  print("HANDLINGGG a background message: ${message.messageId}");
+  debugPrint("HANDLINGGG a background message: ${message.messageId}");
 }
 
 Future<void> main() async {
@@ -66,12 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
+      debugPrint('User granted permission');
+    } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+      debugPrint('User granted provisional permission');
     } else {
-      print('User declined or has not accepted permission');
+      debugPrint('User declined or has not accepted permission');
     }
   }
 
@@ -79,16 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
     final fcmToken = await FirebaseMessaging.instance.getToken();
     debugPrint(fcmToken);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      LocalNotificationApp.localNotification();
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data.length}');
-      setState(() {
-        frase = 'AMO TU!!!';
-      });
+      debugPrint('Got a message whilst in the foreground!');
+      debugPrint('Message data: ${message.data.length}');
+      setState(() {});
 
       if (message.notification != null) {
-        print(
-            'Message also contained a notification: ${message.notification!.title}');
+        debugPrint('Message also contained a notification: ${message.notification!.title}');
       }
     });
   }

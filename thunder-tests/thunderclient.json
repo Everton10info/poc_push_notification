@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T19:51:09.700Z",
-    "modified": "2023-03-14T17:36:38.235Z",
+    "modified": "2023-03-14T17:40:09.188Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -32,7 +32,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{ \n  \"notification\":{\n    \"body\":\"chegou agora !\",\n    \"title\": \"teste\"\n    },\n  \"to\":\"dLsjxdL9Qj63kGeVwc6XqS:APA91bEYQQ_ODBArXVgmUeKnA3TDTJNfbVxHl4sKN2rTzEurKtMtujJrVMKyN3-XLV0oDThe7gQ4i2v7tzRnlJ5PQdBOK32GVkjJcx51w2mHV9_Bd_BvTf7GICBZ7LUMvNfWnqD6Wmg-\" \n}\n",
+      "raw": "{ \n  \"notification\":{\n    \"body\":\"chegou agora !\",\n    \"title\": \"teste\"\n    },\n  \"to\":\"fVs9ystWQ0qbwQoHmiQPSm:APA91bEv3fDlsW7X_wVMH8nYfE_EgSos-r2Af8bca3qMwdhFJQw7aA4KVVN12_8EdfbqqgHuPmfhYgfEiLPKgu76Jy_G21_Z4h_Fo9q-L7_heSPqvu4HnKcN_wCoLcXi29ut0vqPnuVj\" \n}\n",
       "form": []
     },
     "tests": []

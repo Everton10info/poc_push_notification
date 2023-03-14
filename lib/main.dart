@@ -32,17 +32,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: ' Poc Push Notification'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -76,13 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
   getToken() async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
     debugPrint(fcmToken);
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      debugPrint('Got a message whilst in the foreground!');
-      debugPrint('Message data: ${message.data.length}');
-      setState(() {});
+  }
 
+  messageShow() async {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.notification != null) {
-        debugPrint('Message also contained a notification: ${message.notification!.title}');
+        setState(() {
+          frase = message.notification!.body.toString();
+        });
       }
     });
   }
@@ -91,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     permission();
     getToken();
+    messageShow();
 
     super.initState();
   }
@@ -105,17 +108,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text(
+              'Mensagem recebida..',
+              style: TextStyle(color: Colors.black, fontSize: 24),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
             Text(
               frase,
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red, fontSize: 40),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getToken,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
